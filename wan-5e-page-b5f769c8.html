@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>5e对战平台 – 站点介绍</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: #f1f6f9;
+            color: #1c2e3a;
+            line-height: 1.6;
+            padding: 0 1rem;
+        }
+
+        .page {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 0 3rem;
+        }
+
+        /* hero */
+        .hero {
+            background: linear-gradient(145deg, #0b3b4a 0%, #106b7a 100%);
+            border-radius: 2.5rem;
+            padding: 3rem 2rem 2.8rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 12px 24px rgba(7, 63, 77, 0.25);
+            color: #e9f4f7;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 0.8rem;
+            color: #d7f0f5;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 680px;
+            margin: 0 auto 1.6rem;
+            opacity: 0.9;
+        }
+
+        .hero .tagline {
+            display: inline-block;
+            background: #d7f0f5;
+            color: #0b3b4a;
+            font-weight: 500;
+            padding: 0.6rem 1.8rem;
+            border-radius: 60px;
+            font-size: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            letter-spacing: 0.3px;
+        }
+
+        /* 网格卡片区域 —— 优势/说明混合 */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.8rem;
+            margin-bottom: 2.8rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 2rem;
+            padding: 2rem 1.5rem 1.8rem;
+            box-shadow: 0 6px 14px rgba(17, 87, 101, 0.08);
+            transition: transform 0.15s ease, box-shadow 0.2s;
+            border: 1px solid #cfe3e9;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(8, 67, 82, 0.12);
+            border-color: #66b7c9;
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            color: #0d5b68;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card h3 i {
+            font-style: normal;
+            background: #d7f0f5;
+            color: #075661;
+            width: 32px;
+            height: 32px;
+            border-radius: 40%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .card p {
+            font-size: 0.98rem;
+            color: #2d4c58;
+            margin-bottom: 0.3rem;
+        }
+
+        .card .badge {
+            background: #b3dfe8;
+            color: #04323b;
+            font-size: 0.75rem;
+            padding: 0.2rem 0.8rem;
+            border-radius: 60px;
+            display: inline-block;
+            margin-top: 0.6rem;
+            font-weight: 500;
+        }
+
+        /* 说明区 — 场景/可信 */
+        .explain-block {
+            background: #ffffffdc;
+            backdrop-filter: blur(2px);
+            border-radius: 2.5rem;
+            padding: 2rem 2rem 2.4rem;
+            margin: 2rem 0 3rem;
+            box-shadow: 0 4px 12px rgba(27, 90, 101, 0.06);
+            border: 1px solid #b7d6df;
+        }
+
+        .explain-block h2 {
+            font-size: 1.8rem;
+            color: #0b4b57;
+            margin-bottom: 1.2rem;
+            font-weight: 550;
+            letter-spacing: -0.2px;
+        }
+
+        .explain-block p {
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .explain-block .highlight {
+            background: #e1f2f7;
+            padding: 0.1rem 0.5rem;
+            border-radius: 12px;
+            color: #07444e;
+            font-weight: 500;
+        }
+
+        /* FAQ摘要 */
+        .faq-summary {
+            background: #f7fbfd;
+            border-radius: 2rem;
+            padding: 1.8rem 2rem 2.2rem;
+            margin: 2.2rem 0 2rem;
+            border: 1px solid #bcd7e0;
+        }
+
+        .faq-summary h2 {
+            font-size: 1.6rem;
+            color: #0a4d59;
+            margin-bottom: 1.2rem;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #c6dde6;
+            padding: 1rem 0 0.9rem;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-item strong {
+            display: block;
+            font-weight: 600;
+            color: #0a4d59;
+            margin-bottom: 0.25rem;
+        }
+
+        .faq-item p {
+            color: #2a4b57;
+            font-size: 0.95rem;
+            margin: 0.2rem 0;
+        }
+
+        /* 底部链接 */
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem 2rem;
+            padding: 2.8rem 0 1rem;
+            border-top: 1px solid #c5dbe3;
+            margin-top: 1.5rem;
+            font-size: 1rem;
+        }
+
+        .footer-links a {
+            color: #0a5b69;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dotted #8fbac8;
+            padding-bottom: 2px;
+            transition: color 0.2s, border-color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: #06323c;
+            border-bottom-color: #06323c;
+        }
+
+        .footer-links span {
+            color: #396774;
+            font-size: 0.9rem;
+        }
+
+        /* mobile 适应 */
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 1.1rem;
+            }
+            .hero {
+                padding: 2.2rem 1rem;
+            }
+            .feature-grid {
+                gap: 1.2rem;
+            }
+            .card {
+                padding: 1.6rem 1.2rem;
+            }
+            .explain-block {
+                padding: 1.5rem 1.2rem;
+            }
+            .faq-summary {
+                padding: 1.5rem 1rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+            .footer-links {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <!-- hero -->
+        <section class="hero">
+            <h1>5e对战平台 · 站点介绍</h1>
+            <p>一个让玩家安心交流、专注技艺的环境<br>我们更愿意聊聊平台本身的样子</p>
+            <div class="tagline">始于游戏 · 忠于体验</div>
+        </section>
+
+        <!-- 优势 + 说明卡片 (网格) -->
+        <div class="feature-grid">
+            <div class="card">
+                <h3><i>1</i> 技术基础</h3>
+                <p>底层采用稳定的架构与实时数据同步，减少意外掉线或延迟波动。日常维护有明确公告，透明可查。</p>
+                <span class="badge">持续迭代</span>
+            </div>
+            <div class="card">
+                <h3><i>2</i> 对战生态</h3>
+                <p>匹配、天梯、自定义房间…… 多种模式覆盖不同偏好。玩家数据统计与历史记录帮助复盘提升。</p>
+                <span class="badge">数据支持</span>
+            </div>
+            <div class="card">
+                <h3><i>3</i> 社区氛围</h3>
+                <p>官方论坛与频道保持适度的交流节奏，拒绝恶意刷屏或虚假信息。管理员反馈渠道清晰。</p>
+                <span class="badge">日常运营</span>
+            </div>
+            <div class="card">
+                <h3><i>4</i> 平台可信</h3>
+                <p>长期备案与实名认证机制，信息展示与隐私处理均有明确条款。没有隐藏收费或误导弹窗。</p>
+                <span class="badge">合规说明</span>
+            </div>
+        </div>
+
+        <!-- 说明区：场景 + 可信侧写 -->
+        <div class="explain-block">
+            <h2>站点定位与使用场景</h2>
+            <p>
+                <span class="highlight">5e对战平台</span> 主要面向 CS 系列及部分 FPS 游戏爱好者，提供排位、约战与练习赛服务。
+                平台并不渲染“必胜”或“一夜上分”，而是鼓励玩家在相对稳定的环境中磨练配合与个人技术。
+                对局数据、K/D、地图胜率等均可在个人页面查看——辅助成长，而非制造焦虑。
+            </p>
+            <p>
+                从注册到对局，每一步都有清晰的指引。我们尤其在意新玩家的第一印象：
+                教程、举报反馈、客服工单，都尽量做到直接、不绕弯。
+                很多细节改动来自社区建议，这也是平台持续调整的一部分。
+            </p>
+            <p style="margin-top: 0.8rem;">
+                如果你对平台背后的技术或运营还想了解更多，推荐直接体验——
+                <a href="https://wan-5e.com" style="color: #075661; text-decoration: underline; text-underline-offset: 3px; font-weight: 500;">5e对战平台</a>
+                本身就是一个不断变化的项目，很多设计都公开写在更新日志中。
+            </p>
+        </div>
+
+        <!-- FAQ 摘要（4个常见，简短） -->
+        <div class="faq-summary">
+            <h2>常见疑问 · 摘要</h2>
+            <div class="faq-item">
+                <strong>平台需要付费吗？</strong>
+                <p>基础功能免费，部分增值服务（如历史数据导出、高级徽章）采用自愿订阅。没有强制扣费。</p>
+            </div>
+            <div class="faq-item">
+                <strong>如何保证账号安全？</strong>
+                <p>邮箱/手机双重验证可选，登录设备管理可见。官方不会以任何理由索要密码或验证码。</p>
+            </div>
+            <div class="faq-item">
+                <strong>匹配延迟高怎么办？</strong>
+                <p>国内多节点部署，你可以手动选择偏好的服务器区域。对局内实时显示 ping 值。</p>
+            </div>
+            <div class="faq-item">
+                <strong>遇到违规玩家怎么处理？</strong>
+                <p>对局结束后可举报，系统结合人工复查。处理结果会通过消息中心反馈，且定期公示封禁名单。</p>
+            </div>
+            <p style="margin-top: 1rem; font-size: 0.95rem; color: #1f5562;">
+                <span style="background: #b3dae5; padding: 0 8px; border-radius: 40px;">📌</span> 更多详情可直接浏览站内帮助文档，或联系客服确认。
+            </p>
+        </div>
+
+        <!-- 底部链接区 -->
+        <div class="footer-links">
+            <a href="https://wan-5e.com">5e对战平台</a>
+            <span>·</span>
+            <a href="#">服务条款</a>
+            <a href="#">隐私声明</a>
+            <a href="#">用户反馈</a>
+            <span class="footer-note">© 2025 站点介绍页 · 信息供参考</span>
+        </div>
+    </div>
+</body>
+</html>
