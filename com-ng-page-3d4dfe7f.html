@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NG导航 · 用途为先的发现卡片</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #f1f3f6;
+      color: #1e2a3a;
+      line-height: 1.6;
+      padding: 2rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .page {
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    /* hero 卡片区 */
+    .hero-card {
+      background: white;
+      border-radius: 28px;
+      padding: 3rem 2.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.02);
+      border: 1px solid rgba(255,255,255,0.5);
+      margin-bottom: 2.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+    }
+    .hero-left {
+      flex: 2 1 280px;
+    }
+    .hero-left h1 {
+      font-size: 2.6rem;
+      font-weight: 550;
+      letter-spacing: -0.02em;
+      color: #0d1b2b;
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+    }
+    .hero-left .sub {
+      font-size: 1.15rem;
+      color: #3a4b5c;
+      max-width: 460px;
+      margin-bottom: 1.2rem;
+    }
+    .hero-tagline {
+      display: inline-block;
+      background: #eef2f7;
+      border-radius: 40px;
+      padding: 0.5rem 1.4rem;
+      font-size: 0.9rem;
+      color: #1e3a5f;
+      border: 1px solid #d5dee8;
+    }
+    .hero-right {
+      flex: 1 1 180px;
+      background: #f7f9fc;
+      border-radius: 20px;
+      padding: 1.5rem 1.8rem;
+      text-align: center;
+      border: 1px solid #e4e9f0;
+    }
+    .hero-right .big-icon {
+      font-size: 2.4rem;
+      margin-bottom: 0.25rem;
+      display: block;
+    }
+    .hero-right p {
+      font-weight: 450;
+      color: #1e2f40;
+    }
+
+    /* 用途卡片网格 */
+    .section-label {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #2b3f55;
+      margin-bottom: 1.2rem;
+      letter-spacing: 0.02em;
+      padding-left: 0.2rem;
+      border-left: 4px solid #8ba2be;
+      padding-left: 0.8rem;
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.4rem;
+      margin-bottom: 2.5rem;
+    }
+    .use-card {
+      background: white;
+      border-radius: 20px;
+      padding: 1.6rem 1.4rem 1.8rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02), 0 1px 3px rgba(0,0,0,0.02);
+      border: 1px solid #e6ecf2;
+      transition: box-shadow 0.15s, transform 0.1s;
+    }
+    .use-card:hover {
+      box-shadow: 0 8px 16px rgba(0,0,0,0.04), 0 2px 6px rgba(0,0,0,0.03);
+      transform: translateY(-2px);
+    }
+    .use-card .emoji-label {
+      font-size: 1.7rem;
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .use-card h3 {
+      font-weight: 550;
+      font-size: 1.15rem;
+      margin-bottom: 0.4rem;
+      color: #14273e;
+    }
+    .use-card p {
+      font-size: 0.92rem;
+      color: #3c4f64;
+      line-height: 1.5;
+    }
+
+    /* 适合人群卡片 */
+    .audience-box {
+      background: white;
+      border-radius: 24px;
+      padding: 2rem 2.2rem;
+      border: 1px solid #e0e7ef;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      margin-bottom: 2.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.8rem 2.5rem;
+    }
+    .audience-item {
+      flex: 1 1 160px;
+    }
+    .audience-item .label {
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: #677e9a;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.2rem;
+    }
+    .audience-item .value {
+      font-weight: 450;
+      font-size: 1.1rem;
+      color: #1a2b3e;
+    }
+    .audience-desc {
+      flex: 2 1 260px;
+      font-size: 0.95rem;
+      color: #2d4057;
+      line-height: 1.6;
+      border-left: 1px solid #dce4ed;
+      padding-left: 1.8rem;
+    }
+
+    /* 自然链接段落 */
+    .link-paragraph {
+      background: white;
+      border-radius: 24px;
+      padding: 2rem 2.2rem;
+      border: 1px solid #e4eaf1;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+      margin-bottom: 2.2rem;
+    }
+    .link-paragraph p {
+      font-size: 1rem;
+      color: #1b2d41;
+      max-width: 680px;
+      margin-bottom: 0.5rem;
+    }
+    .link-paragraph p:last-of-type {
+      margin-bottom: 0;
+    }
+    .link-paragraph a {
+      color: #1f4e79;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid #b8cadd;
+      padding-bottom: 1px;
+      transition: border-color 0.1s, color 0.1s;
+    }
+    .link-paragraph a:hover {
+      color: #0a2b49;
+      border-bottom-color: #2a5c8a;
+    }
+
+    /* FAQ 摘要 */
+    .faq-mini {
+      background: #f8faff;
+      border-radius: 24px;
+      padding: 1.6rem 2rem 2rem;
+      border: 1px solid #dae2ed;
+      margin-bottom: 2rem;
+    }
+    .faq-mini h3 {
+      font-weight: 500;
+      font-size: 1.1rem;
+      color: #1b3149;
+      margin-bottom: 1rem;
+    }
+    .faq-item {
+      display: flex;
+      gap: 0.6rem 1.2rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.6rem;
+    }
+    .faq-q {
+      font-weight: 500;
+      color: #26415e;
+      min-width: 80px;
+    }
+    .faq-a {
+      color: #2c415b;
+      flex: 1;
+    }
+
+    .footer-note {
+      text-align: center;
+      font-size: 0.85rem;
+      color: #6e829b;
+      border-top: 1px solid #dbe2eb;
+      padding-top: 1.8rem;
+      margin-top: 1rem;
+    }
+
+    /* 响应式 */
+    @media (max-width: 700px) {
+      body { padding: 1.2rem 0.8rem; }
+      .hero-card { padding: 2rem 1.5rem; flex-direction: column; align-items: flex-start; }
+      .hero-left h1 { font-size: 2rem; }
+      .audience-box { flex-direction: column; padding: 1.6rem; }
+      .audience-desc { border-left: none; padding-left: 0; padding-top: 0.5rem; }
+      .faq-mini { padding: 1.4rem 1.2rem; }
+      .link-paragraph { padding: 1.4rem 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- hero 卡片 -->
+  <div class="hero-card">
+    <div class="hero-left">
+      <h1>NG导航 · 用途卡片</h1>
+      <div class="sub">把工具、站点、服务按「实际用途」整理成卡片，你只需想清楚要做什么，就能找到对应方向。</div>
+      <div class="hero-tagline">🔍 以用途为索引，而非分类列表</div>
+    </div>
+    <div class="hero-right">
+      <span class="big-icon">🧩</span>
+      <p>快速识别<br>直接使用</p>
+    </div>
+  </div>
+
+  <!-- 用途卡片网格 -->
+  <div class="section-label">📌 常见用途卡片</div>
+  <div class="card-grid">
+    <div class="use-card">
+      <div class="emoji-label">🖼️</div>
+      <h3>图片工具</h3>
+      <p>压缩、裁剪、去背景、生成缩略图，围绕图片处理需求直接选。</p>
+    </div>
+    <div class="use-card">
+      <div class="emoji-label">📝</div>
+      <h3>文字与笔记</h3>
+      <p>在线文档、速记、大纲、Markdown 编辑器，快速开始写东西。</p>
+    </div>
+    <div class="use-card">
+      <div class="emoji-label">🔗</div>
+      <h3>链接与收藏</h3>
+      <p>短链接、书签管理、稍后读、网页存档，方便整理网络资源。</p>
+    </div>
+    <div class="use-card">
+      <div class="emoji-label">📊</div>
+      <h3>数据与表格</h3>
+      <p>在线表格、图表生成、数据清洗、统计小工具，轻量处理数据。</p>
+    </div>
+    <div class="use-card">
+      <div class="emoji-label">🗂️</div>
+      <h3>文件转换</h3>
+      <p>格式互转、文档合并、PDF 编辑，无需安装本地软件。</p>
+    </div>
+    <div class="use-card">
+      <div class="emoji-label">🌐</div>
+      <h3>开发与调试</h3>
+      <p>代码片段、API 测试、正则检查、编码转换，辅助日常开发。</p>
+    </div>
+  </div>
+
+  <!-- 适合人群 -->
+  <div class="audience-box">
+    <div class="audience-item">
+      <div class="label">👤 日常使用者</div>
+      <div class="value">想快速完成一件事</div>
+    </div>
+    <div class="audience-item">
+      <div class="label">🧑‍💻 创意工作者</div>
+      <div class="value">需要组合多种工具</div>
+    </div>
+    <div class="audience-item">
+      <div class="label">📚 学习者</div>
+      <div class="value">探索不同领域的实用站点</div>
+    </div>
+    <div class="audience-desc">
+      无论你是偶尔需要处理一张图片、转换一个文档，还是经常寻找轻量在线工具，<strong>以用途为中心的卡片</strong>能帮你减少筛选时间。
+    </div>
+  </div>
+
+  <!-- 自然链接段落 -->
+  <div class="link-paragraph">
+    <p><strong>NG导航</strong> 的出发点很简单：当你有一个具体需求（比如压缩图片、生成二维码、对比两份文本），与其在十几个分类里翻找，不如直接看用途卡片。每个卡片对应一个真实场景，点击后快速抵达工具或资源。如果你经常遇到类似「我就想……用哪个网站？」的问题，或许可以试试 <a href="https://com-ng.com">NG导航</a> 这种卡片式索引。</p>
+    <p style="margin-top: 0.8rem;">卡片的内容由人工筛选和整理，偏向轻量、免费或开源的方案，不过也会包含一些功能更全的选项，取决于具体用途。整个页面没有复杂层级，打开即用。</p>
+  </div>
+
+  <!-- FAQ 摘要（简短） -->
+  <div class="faq-mini">
+    <h3>❓ 常见问题（摘要）</h3>
+    <div class="faq-item">
+      <span class="faq-q">卡片会更新吗？</span>
+      <span class="faq-a">会，根据工具变化和用户反馈调整，保持卡片对应实际用途。</span>
+    </div>
+    <div class="faq-item">
+      <span class="faq-q">可以提交建议？</span>
+      <span class="faq-a">目前以维护者整理为主，未来可能会开放用途卡片建议入口。</span>
+    </div>
+    <div class="faq-item">
+      <span class="faq-q">手机上看方便吗？</span>
+      <span class="faq-a">卡片布局自适应，移动端阅读同样清晰，无需缩放。</span>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    <span>以用途为线索 · 减少选择负担</span>
+  </div>
+
+</div>
+</body>
+</html>
